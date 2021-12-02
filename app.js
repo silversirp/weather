@@ -22,8 +22,24 @@ function cityWeather(e){
 function drawWeather(data){
     let celsius = Math.round(parseFloat(data.main.temp)-273.15);
     let description = data.weather[0].description;
+    // let description = 'rain';
 
     document.querySelector('#description').innerHTML = description;
     document.querySelector('#temp').innerHTML = celsius + '&deg;';
     document.querySelector('#location').innerHTML = data.name;
+
+    if(celsius < 0 && description.includes('snow')) {
+        $('body').flurry({
+            character: '❄❅❆*',
+            height: 240,
+            speed: 1400,
+            wind: 200,
+            windVariance: 220,
+            frequency: 10,
+            large: 40,
+            small: 4
+        });
+    }
 }
+
+
