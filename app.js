@@ -8,6 +8,7 @@ function weatherDataFetch( city ){
         }) // conv data to json
         .then(function (data){
             console.log(data);
+            drawWeather(data);
         })
         .catch(function (){
             // catch errors
@@ -16,4 +17,13 @@ function weatherDataFetch( city ){
 
 function cityWeather(e){
     weatherDataFetch('Tallinn');
+}
+
+function drawWeather(data){
+    let celsius = Math.round(parseFloat(data.main.temp)-273.15);
+    let description = data.weather[0].description;
+
+    document.querySelector('#description').innerHTML = description;
+    document.querySelector('#temp').innerHTML = celsius + '&deg;';
+    document.querySelector('#location').innerHTML = data.name;
 }
