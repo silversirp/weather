@@ -22,7 +22,8 @@ function cityWeather(e){
 function drawWeather(data){
     let celsius = Math.round(parseFloat(data.main.temp)-273.15);
     let description = data.weather[0].description;
-    // let description = 'rain';
+    // description = 'clear';
+    // celsius = 5;
 
     document.querySelector('#description').innerHTML = description;
     document.querySelector('#temp').innerHTML = celsius + '&deg;';
@@ -35,6 +36,17 @@ function drawWeather(data){
             speed: 1400,
             wind: 200,
             windVariance: 220,
+            frequency: 10,
+            large: 40,
+            small: 4
+        });
+    } else if(celsius > 0 && description.includes('rain')) {
+        $('body').flurry({
+            character: 'l',
+            height: 240,
+            speed: 500,
+            wind: 20,
+            windVariance: 0,
             frequency: 10,
             large: 40,
             small: 4
